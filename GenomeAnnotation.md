@@ -14,7 +14,7 @@
 ## Introduction
 The Genome Annotation Workshop focuses on annotating the Aldrovanda vesiculosa chloroplast genome using GeSeq and Chloë, highlighting their different approaches and output comparisons. Participants will manipulate GFF files and use text-wrangling techniques to prepare data for analysis and phylogenetic studies.
 
-We'll start by annotating the Aldrovanda vesiculosa chloroplast genome with two different software tools in the browsers.
+We'll start by annotating the *Aldrovanda vesiculosa* chloroplast genome with two different software tools in the browsers.
 - GeSeq
 - Chloe
 
@@ -34,7 +34,8 @@ We'll start by annotating the Aldrovanda vesiculosa chloroplast genome with two 
 2. Use the settings indicated in the Geseq slide in the introductory presentation
 3. When Geseq has finished the annotations, download the GFF file to your PC and then upload it to the Nimbus server. 
     - In the process, rename it to something simpler, e.g. Av.geseq.gff3
-    - Uploaded to your home folder on the server:
+    - Uploaded to your home folder on the server by entering the command from the location of the file from your computer:
+
     ```bash
     scp Av.geseq.gff3 studentaccount@yourserverip:~/
     ```
@@ -101,8 +102,8 @@ head Av.chloe.txt
 
 ```bash
 cut -f 3 Av.chloe.txt | uniq | wc -l
+cut -f 3 Av.geseq.txt | uniq | wc -l
 ```
-
 - We can see which genes are different using `comm`
 -This command is using a bash trick called process substitution (https://www.gnu.org/software/bash/manual/html_node/Process-Substitution.html)
 - In the output, the first column contains genes found only by Geseq, column two contains genes found only by Chloe
@@ -121,7 +122,9 @@ comm -3 <(cut -f 3 Av.geseq.txt) <(cut -f 3 Av.chloe.txt)
 ```bash
 diff -u Av.geseq.txt Av.chloe.txt
 ```
-- You can compare these annotations visually using IGV
+
+**IGV viewer comparison** 
+You can compare these annotations visually using IGV on your computer
 - Download IGV from https://software.broadinstitute.org/software/igv/download
 - Load 'Av.cp.final.fasta' into IGV (Genomes->Load Genome from File...)
 - Load 'Av.geseq.gff3' into IGV (File->Load from File...)
@@ -145,6 +148,7 @@ cat $sourcedir/genome_metadata.tsv | column -t -s $'\t' | less -S
 - Although these are published genomes, downloaded from NCBI GenBank, we can't rely on the annotations provided with these genomes as being correct,
 - or even consistent (i.e. annotated in the same way)
 - So we're going to re-annotate them with Chloe, using the command line version on the Nimbus server
+
 ```bash
 mkdir chloe
 
@@ -177,12 +181,13 @@ done < gene_names.txt
 ```
 
 - Look at the results
-``bash
-less gene_numbers.txt
-```
+```bash
+
+```less gene_numbers.txt
 
 - You'll see that nearly all genes are found in all 11 genomes
 - Some aren't, and we can sort the list to see which genes are found least often
+
 ```bash
 sort -nk 2 gene_numbers.txt | head
 ```
@@ -254,7 +259,7 @@ done < rpoC2.tsv
 ```bash
 cp $sourcedir/*.fasta chloe/
 ```
-- Add your Av Assembly
+- Add your Av Assembly if it not there already!
 
 ```bash
 cp Av.cp.final.fasta chloe/
@@ -290,7 +295,8 @@ cat *rpoC2.nt.protein.fa > allrpoC2.protein.fa
 
 mafft --maxiterate 1000 --globalpair allrpoC2.protein.fa > rpoC2.protein.msa
 ```
-- You can upload the .msa file to online viewers, e.g.
+
+- You can upload the `.msa` file to online viewers (download it from the server to your PC), e.g.
 - https://www.ncbi.nlm.nih.gov/projects/msaviewer/
 - https://www.ebi.ac.uk/Tools/msa/mview/
 

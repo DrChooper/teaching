@@ -6,22 +6,6 @@
 3. [Bayesian inference (MrBayes)](#bayesian-inference-mrbayes)
 
 ## Introduction
-In this session, we are going to construct phylogenetic trees in 3 different ways, so you can see the differences in speed and accuracy.
-
-### Minhash and Neighbour-joining
-Minhash is used to quickly estimate Jaccard similarity between genomic datasets based on k-mers (substrings of fixed length). This distance relationship can be used to construct relational trees.
-
-```bash 
-julia
-using Mashtree
-# kmer size = 16, minhash sketch size = 100000
-mashtree("/mnt/s-ws/everyone/annotation/", 16, 100000)
-
-
-
-
-
-## Introduction
 In this session, we are going to construct phylogenetic trees in 3 different ways, so you can see the differences in speed and accuracy
 
 ### Minhash and Neighbour-joining
