@@ -11,10 +11,13 @@ In this session, we are going to construct phylogenetic trees in 3 different way
 ### Minhash and Neighbour-joining
 Minhash is used to quickly estimate Jaccard similarity between genomic datasets based on k-mers (substrings of fixed length). This distance relationship can be used to construct relational trees
 
-- run this code in the julia REPL
-
+- to run this code in the julia REPL open the julia application:
 ```bash 
 julia
+```
+- load Mashtree and contruct the Newick string
+
+```bash
 using Mashtree
 # kmer size = 16, minhash sketch size = 100000
 mashtree("/mnt/s-ws/everyone/annotation/", 16, 100000)

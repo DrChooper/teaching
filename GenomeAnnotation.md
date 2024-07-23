@@ -255,7 +255,7 @@ done < gene_names.txt
 
 sort -nk 2 gene_lengths.txt | less
 ```
-*[more explanationas on this script](extras/calc_length.md)
+*[more explanationas on this script](extras/calc_length.md)*
 
 - scroll to the end of the file; you'll see that the genes range in average size from under 100 bp to over 6 kb
 - For phylogenetics, the more sequence we can use, the better, provided the sequences are homologous and align well.
@@ -277,7 +277,7 @@ modulus=$((length % 3))
 echo "$id $length $modulus"
 done < rpoC2.tsv
 ```
-*[more explanationas on this script](extras/gene_check.md)
+*[more explanationas on this script](extras/gene_check.md)*
 
 - If the lengths are not roughly consistent (Â± 10%), or if the modulus is not zero for any of the genes, pick a different gene and try again
 
