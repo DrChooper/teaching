@@ -50,7 +50,9 @@ Let's start:
 - In the process, rename it to something simpler, e.g. `Av.chloe.gff3`
 
 ### Data Extraction and Preprocessing
-Take a look at the two GFF files. Although they both follow the GFF3 specification, they are not easy to compare, because the feature names are presented differently.
+- Take a look at the two GFF files using less. 
+- Note the only way to exit less is via the q command.
+- Although both files follow the GFF3 specification, they are not easy to compare, because the feature names are presented differently.
 
 ```bash
 less Av.geseq.gff3
@@ -84,7 +86,7 @@ head Av.geseq.txt
 - We are going to use these patterns to direct the program `sed` - [more info here](https://www.geeksforgeeks.org/sed-command-in-linux-unix-with-examples/)
 
 #### the sed function
-- `sed` is a stream editor used to alter text (e.g. sed 's/find/replace/' input.txt > output.txt will replace all occurrences of 'find' with 'replace' in input.txt
+- `sed` is a stream editor used to alter text (e.g. sed 's/find/replace/' input.txt > output.txt will replace all occurrences of 'find' with 'replace' in input.txt)
 - The command below replaces the text that matches our regex pattern with the captured text (the gene name)
 
 - Then check that this has worked as expected, i.e. replaced the unintelligible final column with just the gene name
@@ -142,8 +144,8 @@ diff -u Av.geseq.txt Av.chloe.txt
 You can compare these annotations visually using IGV on your computer
 - Download IGV from https://software.broadinstitute.org/software/igv/download
 - Load 'Av.cp.final.fasta' into IGV (Genomes->Load Genome from File...)
-- Load 'Av.geseq.gff3' into IGV (File->Load from File...)
-- Load 'Av.chloe.gff3' into IGV (File->Load from File...)
+- Load 'Av.geseq.gff3' into IGV (Drag and drop or File->Load from File...)
+- Load 'Av.chloe.gff3' into IGV (Drag and drop or File->Load from File...)
 
 - You can see that there are quite a few differences in the annotations produced by these two software pipelines, even though both are supposed to be optimised for annotating chloroplast genomes
 - Hence the importance, when comparing annotations, of ensuring that all genomes have been annotated consistently with the same tools.
