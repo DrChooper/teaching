@@ -1,0 +1,56 @@
+# Nexus Format Overview
+
+## Introduction
+
+The Nexus format is a widely used file format in phylogenetics and bioinformatics for representing sequence alignments, phylogenetic trees, and associated metadata. It is designed to be flexible and can accommodate a variety of data types and structures.
+
+## Structure
+
+A Nexus file typically contains the following blocks:
+
+### Header
+
+The header specifies the file format and provides general metadata. It begins with the line:
+```nexus
+#NEXUS
+```
+
+### Data Block
+
+The `DATA` block contains sequence alignments and other data. It includes dimensions of the dataset, data format specifications, and the actual sequence matrix.
+
+**Example:**
+```nexus
+BEGIN DATA;
+  DIMENSIONS NTAX=5 NCHAR=10;
+  FORMAT DATATYPE=DNA MISSING=? GAP=-;
+  MATRIX
+    Species1   ACGTACGTAC
+    Species2   ACGT-T-G-C
+    Species3   ACGTAC-TAC
+    Species4   -CGTACGT-C
+    Species5   ACGTACGTAC
+  ;
+END DATA;
+```
+
+- `DIMENSIONS NTAX` specifies the number of taxa (sequences).
+- `DIMENSIONS NCHAR` specifies the number of characters (columns in the alignment).
+- `FORMAT` defines the datatype (e.g., DNA), missing data symbol, and gap symbol.
+- `MATRIX` contains the alignment data where each row represents a sequence.
+
+### Tree Block
+
+The `TREES` block stores phylogenetic trees. It allows for the inclusion of multiple trees with various tree formats.
+
+**Example:**
+```nexus
+BEGIN TREES;
+  TREE tree1 = ((Species1, Species2), (Species3, (Species4, Species5)));
+END TREES;
+```
+
+- `TREE tree1` specifies a tree with a given topology.
+
+For more information and detailed specifications, refer to the [Nexus Format Documentation](https://phylosolutions.com/2011/03/29/understanding-nexus-format/).
+
