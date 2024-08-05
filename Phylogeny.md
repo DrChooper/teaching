@@ -224,9 +224,8 @@ Then paste the Nexus tree into https://itol.embl.de/ (you have to download the f
 ### Comparison
 The main aim today is to understand that there are different methods and how they work and what they produce.
 
+- Let's take a look at the correct tree that is saved in the folder for you ([source](https://github.com/DrChooper/teaching/blob/main/Phylogeny.md))
 
-
-- Let's take a look at the correct tree that is saved in the folder for you
 - Use `less` to see the tree in Newick format
 
 ```bash
