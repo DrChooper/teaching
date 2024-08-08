@@ -23,13 +23,13 @@ using Mashtree
 # kmer size = 16, minhash sketch size = 100000
 mashtree("/mnt/s-ws/everyone/annotation/", 16, 100000)
 ```
-*[info on the influence eof kmer size and msketch size](extras/kmer_sketch.md)*
-
+*[info on the influence of kmer size and msketch size](extras/kmer_sketch.md)*
 - How long did it take to make this? Remember how long it felt and now **- Quit Julia with Ctrl-D**
 
 - The tree has sequence IDs. But you can rename the sequence IDs to with the NCBI taxid:
     
-    1. replace `xxx` with your Newick string
+    1. replace `xxx` with your Newick string [here if you are stuck](extras/newick1.md#mashtree)
+
     2. select the accession from the metadata file
     3. replace them
 
@@ -47,9 +47,11 @@ echo $tree
 *[find full annotation of this here](extras/newick1.md)*
 
 #### iTOL browser 
-- paste the Newick tree into the [iTOL](https://itol.embl.de/) browser tool and click upload. This will show you the tree
+- paste the Newick tree into the [iTOL](https://itol.embl.de/) browser tool and click upload. This will show you the tree with the taxaid numbers. [here if you are stuck](extras/newick1.md#mash-newick-with-taxaid)
 
-- Root the tree with *Liriodendron tulipifera*
+- **to display the species go to the control panel>Advanced and then scroll down to find the 'Other functions' section. Choose 'Autoassign taxonomy' 'NCBI'.** When the scary red panel pops up click 'assign taxonomy' and then 'reload page'.  
+
+- Root the tree with *Liriodendron tulipifera* by clicking on the name. Go to the 'tree structure' in the drop down menu and choose 'reroot tree ...'
 - What species is Aldrovanda most closely related to in this tree?
 - Try different values for the kmer size (10â€“32) and the sketch size (1000â€“100000)
 - Do you get different trees?
@@ -178,7 +180,7 @@ Along the line you see the split frequencies pop up:
 
 *Thresholds:* Typically, a value below 0.01 is considered good convergence. Your final value of e.g 0.009821 is below this threshold, indicating satisfactory convergence.
 
-- so if your split frequencies look good say no to additional itrerations.
+- so if your split frequencies look good say `no` to additional itrerations.
 
 
 **Once the run has finished, we can inspect the output**
@@ -217,7 +219,7 @@ quit;
 cat rpoC2.codon.nex.con.tre 
 ```
 
-Then paste the Nexus tree into https://itol.embl.de/ (you have to download the file to your computer or you can past it but then you have to re-annonate it.)
+Then paste the Nexus tree into https://itol.embl.de/ (you have to download the file to your computer or you can paste it but then you have to re-annonate it.)
 *[cheat link](extras/newick1.md)*
 
 ---
@@ -242,6 +244,10 @@ Now cmpare all 3 trees and all three computing times.
 
 - Which of the three methods is the fastest? 
 - Which is the most accurate?
+
+Here the snapshots from my trees:
+![Phylogenetic Trees](pic/Trees.png)
+
 
 🌱🔍📊**Congratulations on completing the Phylogenetics lab!** 🌿🔬✨**or at the least you clicked all the cheat buttons and got to the end of this session. Hurray** 🎓
 
