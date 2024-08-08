@@ -111,15 +111,63 @@ echo "$tree"
 
 #### MrBayes
 
-Here the actual tree:
+Here the Bayes tree:
 
 ```bash
 # Nexus tree not yet annotated
-tree="[&U] (1[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:3.545467e-02[&length_mean=3.50257832e-02,length_median=3.54546700e-02,length_95%HPD={2.90613900e-02,3.97492700e-02}],7[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:5.315716e-02[&length_mean=5.28309676e-02,length_median=5.31571600e-02,length_95%HPD={4.72365000e-02,5.85820900e-02}],(((((2[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:6.604020e-02[&length_mean=6.51734753e-02,length_median=6.60402000e-02,length_95%HPD={5.26125000e-02,7.31287800e-02}],(4[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:6.220791e-02[&length_mean=6.22263394e-02,length_median=6.22079100e-02,length_95%HPD={5.58731400e-02,6.75169500e-02}],(5[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:7.821340e-02[&length_mean=7.98002797e-02,length_median=7.82134000e-02,length_95%HPD={7.23440700e-02,8.94922500e-02}],(9[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:4.610593e-02[&length_mean=4.63465888e-02,length_median=4.61059300e-02,length_95%HPD={3.80167600e-02,5.43496800e-02}],11[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:6.523289e-02[&length_mean=6.56442368e-02,length_median=6.52328900e-02,length_95%HPD={5.73263000e-02,7.31237900e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:1.894015e-02[&length_mean=1.89293994e-02,length_median=1.89401500e-02,length_95%HPD={1.36761900e-02,2.27847900e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:6.711367e-03[&length_mean=7.26324518e-03,length_median=6.71136700e-03,length_95%HPD={4.02061500e-03,1.04333800e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:1.126808e-02[&length_mean=1.10690108e-02,length_median=1.12680800e-02,length_95%HPD={7.77257900e-03,1.52072500e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:3.109043e-02[&length_mean=3.16918276e-02,length_median=3.10904300e-02,length_95%HPD={2.46074300e-02,3.84590000e-02}],3[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:9.394743e-02[&length_mean=9.28133738e-02,length_median=9.39474300e-02,length_95%HPD={8.29263100e-02,1.02087100e-01}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:1.480231e-02[&length_mean=1.47342397e-02,length_median=1.48023100e-02,length_95%HPD={1.14382400e-02,1.87087700e-02}],10[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:3.465900e-02[&length_mean=3.44781638e-02,length_median=3.46590000e-02,length_95%HPD={2.77199000e-02,3.90480900e-02}])[&prob=9.41176471e-01,prob_stddev=8.31890331e-02,prob_range={8.82352941e-01,1.00000000e+00},prob(percent)="94",prob+-sd="94+-8"]:1.920188e-03[&length_mean=2.30552003e-03,length_median=1.92018800e-03,length_95%HPD={7.27882000e-04,3.68785700e-03}],8[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:2.568806e-02[&length_mean=2.59187574e-02,length_median=2.56880600e-02,length_95%HPD={2.15827000e-02,2.94196700e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:4.891049e-02[&length_mean=4.81608729e-02,length_median=4.89104900e-02,length_95%HPD={4.04868600e-02,5.55982800e-02}],(6[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:5.403450e-04[&length_mean=6.25692220e-04,length_median=5.40345000e-04,length_95%HPD={3.65281900e-05,1.47964200e-03}],12[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:2.831855e-02[&length_mean=2.87012465e-02,length_median=2.83185500e-02,length_95%HPD={2.52717800e-02,3.36914100e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:1.587571e-02[&length_mean=1.60931885e-02,length_median=1.58757100e-02,length_95%HPD={1.19296500e-02,1.99041900e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:5.287911e-03[&length_mean=5.51374997e-03,length_median=5.28791100e-03,length_95%HPD={2.95650500e-03,7.71555700e-03}]);"
-```
-#### Bayes tree in newick form
+```bash    
+  #NEXUS
+[ID: 5280131283]
+begin taxa;
+        dimensions ntax=11;
+        taxlabels
+                Av.cp.final.rpoC2
+                NC_008326.rpoC2
+                NC_010776.rpoC2
+                NC_022402.rpoC2
+                NC_026134.rpoC2
+                NC_035415.rpoC2
+                NC_035417.rpoC2
+                NC_041258.rpoC2
+                NC_042597.rpoC2
+                NC_051455.rpoC2
+                NC_051971.rpoC2
+                ;
+end;
+begin trees;
+        translate
+                1       Av.cp.final.rpoC2,
+                2       NC_008326.rpoC2,
+                3       NC_010776.rpoC2,
+                4       NC_022402.rpoC2,
+                5       NC_026134.rpoC2,
+                6       NC_035415.rpoC2,
+                7       NC_035417.rpoC2,
+                8       NC_041258.rpoC2,
+                9       NC_042597.rpoC2,
+                10      NC_051455.rpoC2,
+                11      NC_051971.rpoC2
+                ;
+   tree con_50_majrule = [&U] (1[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:3.452907e-02[&length_mean=3.45212778e-02,length_median=3.45290700e-02,length_95%HPD={2.96225100e-02,3.83524500e-02}],7[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:5.288674e-02[&length_mean=5.34552884e-02,length_median=5.28867400e-02,length_95%HPD={4.78573900e-02,5.82505700e-02}],(((((2[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:6.524875e-02[&length_mean=6.46920862e-02,length_median=6.52487500e-02,length_95%HPD={5.65023700e-02,7.24066900e-02}],(4[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:6.467878e-02[&length_mean=6.42238491e-02,length_median=6.46787800e-02,length_95%HPD={5.61046000e-02,6.88557300e-02}],(5[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:8.107971e-02[&length_mean=8.13590269e-02,length_median=8.10797100e-02,length_95%HPD={7.12122100e-02,8.83254200e-02}],(9[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:4.562096e-02[&length_mean=4.50742869e-02,length_median=4.56209600e-02,length_95%HPD={3.86517800e-02,5.12176800e-02}],11[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:6.589138e-02[&length_mean=6.58006497e-02,length_median=6.58913800e-02,length_95%HPD={5.81845000e-02,7.33511300e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:1.900464e-02[&length_mean=1.90827156e-02,length_median=1.90046400e-02,length_95%HPD={1.50565100e-02,2.27622300e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:7.761626e-03[&length_mean=7.81708409e-03,length_median=7.76162600e-03,length_95%HPD={4.66618300e-03,1.07821900e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:1.075370e-02[&length_mean=1.10413548e-02,length_median=1.07537000e-02,length_95%HPD={6.97324600e-03,1.46796500e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:3.158395e-02[&length_mean=3.15678328e-02,length_median=3.15839500e-02,length_95%HPD={2.37178600e-02,3.77140000e-02}],3[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:9.407518e-02[&length_mean=9.37498978e-02,length_median=9.40751800e-02,length_95%HPD={8.15330000e-02,1.01788400e-01}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:1.474397e-02[&length_mean=1.49450287e-02,length_median=1.47439700e-02,length_95%HPD={1.06209100e-02,1.92830000e-02}],10[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:3.331415e-02[&length_mean=3.36189069e-02,length_median=3.33141500e-02,length_95%HPD={2.90139400e-02,3.88283300e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:1.904403e-03[&length_mean=2.35553543e-03,length_median=1.90440300e-03,length_95%HPD={8.54679500e-04,3.93488100e-03}],8[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:2.543118e-02[&length_mean=2.60639181e-02,length_median=2.54311800e-02,length_95%HPD={2.22574900e-02,2.96783500e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:4.832307e-02[&length_mean=4.85161122e-02,length_median=4.83230700e-02,length_95%HPD={3.93723300e-02,5.45909000e-02}],6[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:1.561311e-02[&length_mean=1.55678619e-02,length_median=1.56131100e-02,length_95%HPD={1.15494300e-02,1.82530200e-02}])[&prob=1.00000000e+00,prob_stddev=0.00000000e+00,prob_range={1.00000000e+00,1.00000000e+00},prob(percent)="100",prob+-sd="100+-0"]:5.952369e-03[&length_mean=5.74763612e-03,length_median=5.95236900e-03,length_95%HPD={3.23652600e-03,8.28774200e-03}]);
+end;length_95%HPD={3.23652600e-03,8.28774200e-03}]);
+```   
 
-Here the actual data tree:
+Translated with species in iTOL friendly format
+```bash
+  tree con_50_majrule = [&U] (Av.cp.final.rpoC2:3.452907e-02,
+Dionaea_muscipula:5.288674e-02,
+(((((Liriodendron_tulipifera:6.524875e-02,
+(Eucalyptus_diversicolor:6.467878e-02,
+(Acacia_ligulata:8.107971e-02,
+(Cephalotus_follicularis:4.562096e-02,
+Oxalis_corniculata:6.589138e-02):1.900464e-02):7.761626e-03):1.075370e-02):3.158395e-02,
+Fagopyrum_esculentum:9.407518e-02):1.474397e-02,
+Nepenthes_khasiana:3.331415e-02):1.904403e-03,
+Ancistrocladus_tectorius:2.543118e-02):4.832307e-02,
+Drosera_regia:1.561311e-02):5.952369e-03);
+```
+
+#### Here the actual data tree:
 
 ```bash
 (((Fagopyrum_esculentum:99.295536,((Nepenthes_khasiana:78.324329,Ancistrocladus_tectorius:78.324329):4.66512,(Drosera_regia:63.040033,(Aldrovanda_vesiculosa:54.959634,Dionaea_muscipula:54.959634):8.0804):19.949415):16.306087):24.438701,((Acacia_ligulata:115.785565,(Cephalotus_follicularis:91.346395,Oxalis_corniculata:91.346395):24.43917)mrcaott2ott371:2.793039,Eucalyptus_diversicolor:118.578604)mrcaott2ott96:5.155633)Pentapetalae:12.17795,Liriodendron_tulipifera:135.912187)Mesangiospermae;

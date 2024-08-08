@@ -219,24 +219,32 @@ quit;
 cat rpoC2.codon.nex.con.tre 
 ```
 
-Then paste the Nexus tree into https://itol.embl.de/ (you have to download the file to your computer or you can paste it but then you have to re-annonate it.)
-*[cheat link](extras/newick1.md)*
+Then paste the Nexus tree into https://itol.embl.de/ (you have to download the file to your computer or you can paste it but then you have to re-annonate it.) For ease of use here the translated tree for pasting into iTOL
+```bash
+  tree con_50_majrule = [&U] (Av.cp.final.rpoC2:3.452907e-02,
+Dionaea_muscipula:5.288674e-02,
+(((((Liriodendron_tulipifera:6.524875e-02,
+(Eucalyptus_diversicolor:6.467878e-02,
+(Acacia_ligulata:8.107971e-02,
+(Cephalotus_follicularis:4.562096e-02,
+Oxalis_corniculata:6.589138e-02):1.900464e-02):7.761626e-03):1.075370e-02):3.158395e-02,
+Fagopyrum_esculentum:9.407518e-02):1.474397e-02,
+Nepenthes_khasiana:3.331415e-02):1.904403e-03,
+Ancistrocladus_tectorius:2.543118e-02):4.832307e-02,
+Drosera_regia:1.561311e-02):5.952369e-03);
+```
+
 
 ---
 ### Comparison
 The main aim today is to understand that there are different methods and how they work and what they produce.
 
-- Let's take a look at the correct tree that is saved in the folder for you ([source](https://github.com/DrChooper/teaching/blob/main/Phylogeny.md))
-
-- Use `less` to see the tree in Newick format
+- Let's take a look at the correct tree that is saved in the folder for you. Use `less` to see the tree in Newick format
 
 ```bash
 less /mnt/s-ws/everyone/annotation_phylogenetics/carnivores/carnivores.nw 
 ```
 - paste the tree into https://itol.embl.de/ to visualise it in a graphical form
-
-*[cheat link](extras/newick1.md)*
-
 - Root the tree with *Liriodendron*
 - What species is *Aldrovanda* most closely related to?
 
