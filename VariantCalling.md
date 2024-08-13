@@ -2,8 +2,6 @@
 # Variant Calling
 
 ## Content
-# Table of Contents
-
 - [Mapping Reads to Reference using bbmap](#mapping-reads-to-reference-using-bbmap)
 - [Variant Calling with Original Data](#variant-calling-with-original-data)
 - [Quality Control and Clean up](#quality-control-and-clean-up)
@@ -11,7 +9,10 @@
 - [Variant Querying and Annotation](#variant-querying-and-annotation)
 
 ## Introduction
-This workflow details the analysis of chloroplast DNA sequencing data, encompassing read mapping, variant calling, quality control, contamination removal, and annotation to identify genetic variations across the genome.
+This workflow details the analysis of chloroplast DNA sequencing data, encompassing read mapping, variant calling, quality control, contamination removal, and annotation to identify genetic variations across the genome. We are using the example of *Aldrovanda* specimen. We have annotated the genome and placed it amongst other plant species in the previous pracs. Now we are interested in the genetic variation within the species. For this we have 16 other specimen that originate from several geographic regions across the globe. 
+
+*In this prac we are doing the variant calling 3 times (original, cleaned, filtered)* The comparison at the end is to show you the impact of natural and technical artifacts. There are some quesitons and suggested answers for you to practice you understanding.
+
 
 ### Mapping Reads to reference using bbmap
 
@@ -31,7 +32,7 @@ This workflow details the analysis of chloroplast DNA sequencing data, encompass
     sourcedir=/mnt/s-ws/everyone/SCIEM401/Module_6_Variants
     ```
     - Ensure you are in your folder (check with `pwd`) which is something like `/mnt/s-ws/s-99`.
-    - make sure your folder contains the `Av.cp.final.fasta` file (reference genome)
+    - make sure your folder contains the `Av.cp.final.fasta` file (reference genome) e.g. go into the   `chloe` folder if you files are in there
     
 2. **Map Reads to the Reference Genome:**
     - Use `bbmap` to align the reads and generate BAM files.
@@ -66,7 +67,7 @@ This workflow details the analysis of chloroplast DNA sequencing data, encompass
     *Sorted BAM files are typically smaller due to better compression of the sorted data.*
 
 5. **Remove Unsorted BAM Files:**
-    - Use the `rm` command to remove the unsorted BAM files.The sorted and unsorted files contain the same content just differently packed and marked so you don;t need both files. You want to keep tha smaller file and remove the larger files. You can do this using regular expession patters:
+    - Use the `rm` command to remove the unsorted BAM files.The sorted and unsorted files contain the same content just differently packed and marked so you don't need both files. You want to keep the smaller file and remove the larger files. You can do this using regular expession patters:
 
     ```bash
     rm [0-9].bam
@@ -91,12 +92,12 @@ bcftools stats -s - Av.vcf | grep "PSC"
 ```
 However there are other sections ([explanation and output here](extras/bcftool1.md))
 
-
 - The summary output will show columns such as `nHapRef` (same as reference) and `nHapAlt` (different from reference) since we specified the samples as haploid. If the samples were diploid, the variants would be counted in the `nRefHom` (homozygous reference), `nNonRefHom` (homozygous variant), and `nHets` (heterozygous) columns.
 
 Here is an example of what the output might look like and how to interpret what you see: [output here](extras/bcftool1.md)
 
-The conclusion is that there is too much 
+The conclusion is that there is too much variation amongst the samples (e.g. high numbers of nHapRef and inconsistent numbers of nHapAlt across samples of same species). There is also some missing data (last column) in some samples. out of the samples shown sample 16 seems to be an outlier.
+
 ### Quality Control and Clean up
 
 **For example: Removal of Arabidopsis Contamination**
@@ -167,13 +168,13 @@ By understanding these metrics and their implications, you can better interpret 
 
 ### Variant Calling with Cleaned Data
 
-We have already performed the steps of mapping, sorting, indexing, and variant calling with the cleaned reads. The cleaned BAM files are available in `$sourcedir/clean_bams`.
+To avoid having to generate the maps during the prac, the cleaned BAM files are available in `$sourcedir/clean_bams`.
 
 **Steps and Output**
 
 1. **Call Variants with the Clean BAM Files**
 
-   The command used to call variants with the clean BAM files is as follows:
+   The command used to call variants with the clean BAM files is the same as previously but uses the cleaned files that had the Arabidopsis reads removed:
 
    ```bash
    bcftools mpileup -Ou -f Av.cp.final.fasta $sourcedir/clean_bams/*.sorted.bam | bcftools call --ploidy 1 -mv -Ov -o Av_clean.vcf
@@ -237,7 +238,6 @@ The reduction in the overall number of variants (as evidenced by the line count 
 This process highlights the critical importance of removing contaminants to obtain accurate and meaningful variant calling results. By ensuring that the data reflects only the organism of interest, we get a more reliable representation of its genetic makeup.
 
 
-
 ### Variant Querying and Annotation
 
 **We will now move on with the cleaned data output.** In this section, we will focus on querying, filtering, and counting variants. We will filter variants to retain only SNPs or indels and only 'high-quality' variants. Follow the steps below to perform these tasks and analyze the results.
@@ -256,7 +256,7 @@ This process highlights the critical importance of removing contaminants to obta
    - Cleaned VCF (Av_clean.vcf): 301 variants
    - High-quality VCF (Av.hiQ.vcf): 250 variants
 
-   The cleaning process has reduced the number of variants, suggesting that some contaminant or low-quality variants have been removed.
+   The cleaning process has reduced the number of variants, suggesting that some low-quality variants have been removed.
 
 2. **Count Variants**: Use `bcftools stats` to count and summarize the variants. The `grep "PSC"` command filters the output to show only per-sample counts.
 
@@ -313,49 +313,49 @@ This command is a powerful way to analyze how variants intersect with coding seq
 5. **`sort -nk 10`**:
    - This sorts the filtered output numerically (`-n`) by the 10th column (`-k 10`), which contains the count of intersecting variants.
 
-#### Output Interpretation:
+   #### Output Interpretation:
 
-The output will show each CDS feature from the GFF3 file, along with the count of high-quality variants that intersect with each CDS. The sorted output will list these features from the lowest to the highest number of intersecting variants.
+   The output will show each CDS feature from the GFF3 file, along with the count of high-quality variants that intersect with each CDS. The sorted output will list these features from the lowest to the highest number of intersecting variants.
 
-#### Example of Output:
-```plaintext
-...
-Av.cp.final     Chloe   CDS     82316   83140   9.001e-03       -       0       ID=rpl2-2.CDS.1;Parent=rpl2-2   0
-Av.cp.final     Chloe   CDS     83159   83440   1.554e-03       -       0       ID=rpl23-2.CDS.1;Parent=rpl23-2 0
-Av.cp.final     Chloe   CDS     83819   89932   6.275e-03       +       0       ID=ycf2.CDS.1;Parent=ycf2       0
-Av.cp.final     Chloe   CDS     91801   92058   2.690e-03       +       0       ID=rps12B.CDS.2;Parent=rps12B   0
-Av.cp.final     Chloe   CDS     92117   92584   3.971e-04       +       0       ID=rps7.CDS.1;Parent=rps7       0
-Av.cp.final     Chloe   CDS     13145   13888   6.512e-04       -       0       ID=atpI.CDS.1;Parent=atpI       1
-Av.cp.final     Chloe   CDS     19377   20993   1.891e-03       -       0       ID=rpoC1.CDS.3;Parent=rpoC1     1
-Av.cp.final     Chloe   CDS     22171   25383   2.825e-04       -       0       ID=rpoB.CDS.1;Parent=rpoB       1
-Av.cp.final     Chloe   CDS     66322   66702   1.124e-03       +       0       ID=rpl20.CDS.1;Parent=rpl20     1
-Av.cp.final     Chloe   CDS     8921    10444   3.111e-04       -       0       ID=atpA.CDS.1;Parent=atpA       1
-Av.cp.final     Chloe   CDS     402     1925    3.854e-03       -       0       ID=matK.CDS.1;Parent=matK       2
-Av.cp.final     Chloe   CDS     108094  113754  5.212e-02       -       0       ID=ycf1.CDS.1;Parent=ycf1       5
-Av.cp.final     Chloe   CDS     38139   40391   7.808e-05       -       0       ID=psaA.CDS.1;Parent=psaA       5
-...
-```
+   #### Example of Output:
+   ```plaintext
+   ...
+   Av.cp.final     Chloe   CDS     82316   83140   9.001e-03       -       0       ID=rpl2-2.CDS.1;Parent=rpl2-2   0
+   Av.cp.final     Chloe   CDS     83159   83440   1.554e-03       -       0       ID=rpl23-2.CDS.1;Parent=rpl23-2 0
+   Av.cp.final     Chloe   CDS     83819   89932   6.275e-03       +       0       ID=ycf2.CDS.1;Parent=ycf2       0
+   Av.cp.final     Chloe   CDS     91801   92058   2.690e-03       +       0       ID=rps12B.CDS.2;Parent=rps12B   0
+   Av.cp.final     Chloe   CDS     92117   92584   3.971e-04       +       0       ID=rps7.CDS.1;Parent=rps7       0
+   Av.cp.final     Chloe   CDS     13145   13888   6.512e-04       -       0       ID=atpI.CDS.1;Parent=atpI       1
+   Av.cp.final     Chloe   CDS     19377   20993   1.891e-03       -       0       ID=rpoC1.CDS.3;Parent=rpoC1     1
+   Av.cp.final     Chloe   CDS     22171   25383   2.825e-04       -       0       ID=rpoB.CDS.1;Parent=rpoB       1
+   Av.cp.final     Chloe   CDS     66322   66702   1.124e-03       +       0       ID=rpl20.CDS.1;Parent=rpl20     1
+   Av.cp.final     Chloe   CDS     8921    10444   3.111e-04       -       0       ID=atpA.CDS.1;Parent=atpA       1
+   Av.cp.final     Chloe   CDS     402     1925    3.854e-03       -       0       ID=matK.CDS.1;Parent=matK       2
+   Av.cp.final     Chloe   CDS     108094  113754  5.212e-02       -       0       ID=ycf1.CDS.1;Parent=ycf1       5
+   Av.cp.final     Chloe   CDS     38139   40391   7.808e-05       -       0       ID=psaA.CDS.1;Parent=psaA       5
+   ...
+   ```
 
-#### Explanation:
-- **Columns 1-9**: These columns represent the standard fields in a GFF3 file, including chromosome, source, feature type (CDS in this case), start and end positions, score, strand, phase, and attribute fields.
-  
-- **Column 10**: This is the count of high-quality variants from the VCF file that intersect with the corresponding CDS.
+   #### Explanation:
+   - **Columns 1-9**: These columns represent the standard fields in a GFF3 file, including chromosome, source, feature type (CDS in this case), start and end positions, score, strand, phase, and attribute fields.
+   
+   - **Column 10**: This is the count of high-quality variants from the VCF file that intersect with the corresponding CDS.
 
-- **Sorting**: The sorting by the 10th column allows you to quickly identify which CDS features have the most (or fewest) intersecting variants. 
+   - **Sorting**: The sorting by the 10th column allows you to quickly identify which CDS features have the most (or fewest) intersecting variants. 
 
-This output helps to identify regions in the chloroplast genome that are most affected by variants, particularly in protein-coding regions. Regions with higher variant counts might be of particular interest for further functional analysis, as they could indicate areas of high mutation or regions subject to selective pressures.
+   This output helps to identify regions in the chloroplast genome that are most affected by variants, particularly in protein-coding regions. Regions with higher variant counts might be of particular interest for further functional analysis, as they could indicate areas of high mutation or regions subject to selective pressures.
 
 #### Conclusion from out dataset
 
 1. **No Overlap with High-Quality Variants**:
    - The majority of the CDS regions listed in the output have a count of `0` in the last column. This indicates that these coding sequences do not overlap with any high-quality variants in the `Av.hiQ.vcf` file.
-   - This suggests that these regions of the chloroplast genome are either highly conserved or that the variants in the dataset are located outside of these coding regions.
+   - This suggests that these regions of the chloroplast genome are either highly conserved or in our case the samples are to closely related to have variation. Also the variants in the dataset may be located outside of these coding regions.
 
 2. **Few CDS Regions with Variants**:
    - A small number of CDS regions show a count of `1` or more, indicating the presence of one or more variants overlapping these coding sequences. These regions might be of particular interest as they could indicate regions with potential functional significance or evolutionary importance.
 
 3. **Specific Genes with Variants**:
-   - For example, the gene **`matK`** has 2 variants within its CDS region, and **`ycf1`** has 5 variants. The presence of these variants could suggest potential polymorphisms or evolutionary changes within these genes.
+   - For example, the gene **`matK`** has 2 variants within its CDS region, and **`ycf1`** has 5 variants. The presence of these variants could suggest potential polymorphisms or evolutionary changes within these genes even within the same species. These could be useful for identifying populations.
 
 4. **Sorting by Variant Count**:
    - The output is sorted by the number of intersecting variants, with genes that have more variants listed at the bottom. This sorting helps to quickly identify which coding sequences have the most variants, which could be useful for prioritizing further analysis.
@@ -363,6 +363,7 @@ This output helps to identify regions in the chloroplast genome that are most af
 ### Implications:
 - **Conservation of Chloroplast Genes**: The fact that most coding sequences do not overlap with high-quality variants suggests that many chloroplast genes are highly conserved, reflecting their essential roles in the plant's cellular machinery.
 - **Potential Functional Impact**: The few coding sequences that do have variants may be of interest for further study to understand the potential impact of these variants on gene function and plant physiology.
+- **Applications**: Some of these SNPs are within genes that have highly conserved domains. Using such highly conserved seqeunces as primer binding regions to develop barcoding or species ID panels.
 
 
 🌟 **Woohoo, you've made it through my pracs! Congratulations!** 🎉

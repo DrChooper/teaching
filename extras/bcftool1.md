@@ -33,7 +33,7 @@ The output of `bcftools stats` is organized into multiple sections, each identif
 
 8. **DP - Depth Distribution**: Reports the distribution of sequencing depth across variants, important for coverage assessment.
 
-Each section provides targeted insights into different aspects of the variant data, making it easier to assess the quality and characteristics of the dataset.
+Each section provides targeted insights into different aspects of the variant data.
    
 ---    
 ### PSC Output Explanation
@@ -60,9 +60,9 @@ When analyzing chloroplast genomes, which are haploid and present in a single co
 
 ### Expected Findings in a Chloroplast Genome from the Same Species
 
-- **Haploid Nature**: The chloroplast genome is haploid, so there should be only one allele at each position—matching the reference genome (nRefHom).
+- **Haploid Nature**: The chloroplast genome is haploid, so there should be only one allele at each position—matching the reference genome.
 - **Absence of Variation**: Since all samples come from the same species, you would expect very few, if any, variants. Ideally, the counts for nNonRefHom (non-reference homozygous) and nHets (heterozygous sites) should be zero.
-- **Consistency Across Samples**: All samples should display similar or identical variant statistics if they are from the same species and there is no contamination.
+- **Consistency Across Samples**: All samples should display similar or near identical variant statistics if they are from the same species and there is no contamination.
 
 ### Observations in the Output
 
@@ -86,19 +86,19 @@ When analyzing chloroplast genomes, which are haploid and present in a single co
 | PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/bams/9.sorted.bam  | 0          | 0             | 0        | 0               | 0                 | 0          | 0.0               | 0               | 306         | 125         | 3            |
 
 ### Analysis of the Results
-1. **Zero Counts in nRefHom and nNonRefHom**: All samples show zero counts for both nRefHom (reference homozygous) and nNonRefHom (non-reference homozygous) - indication that the sample matches the reference genome.
+1. **Zero Counts in nRefHom and nNonRefHom**: All samples show zero counts for both nRefHom (reference homozygous) and nNonRefHom (non-reference homozygous)
 
 2. **Zero Counts in nHets**: As expected for a haploid genome, there are zero heterozygous sites across all samples.
 
 3. **Non-Zero Counts in Singleton, HapRef, and HapAlt**:
    - **Singletons**: The presence of singleton variants (variants that are unique to one sample) is unexpected in samples from the same species and may indicate sequencing errors or contamination.
-   - **nHapRef and nHapAlt**: These counts reflect the presence of reference and alternate alleles, which is normal. However, the discrepancies in singleton and missing data counts suggest potential issues with the data.
+   - **nHapRef and nHapAlt**: These counts reflect the presence of reference and alternate alleles, which is normal. However, the discrepancies (e.g. in nHapAlt --yes or singleton -- not in our case) and missing data counts suggest potential issues with the data.
 
-4. **Missing Data**: The non-zero counts in the nMissing column for some samples indicate that data is missing for certain sites. This could be due to low coverage or poor-quality sequencing and could also be a sign of contamination.
+4. **Missing Data**: The non-zero counts in the nMissing column for some samples indicate that data is missing for certain sites. This could be due to low coverage or poor-quality sequencing and could also be a sign of contamination. (e.g. sample 16)
 
 ### Conclusion
 
-Given that these samples are all from the same species, the output should have shown consistent and similar values across all samples with most sites categorized as nRefHom. The observed zero counts for nRefHom and nNonRefHom across all samples, along with the presence of singleton variants and missing data, suggest that there may be contamination or sequencing artifacts in the dataset. This could result from cross-sample contamination or technical issues during sequencing or data processing.
+Given that these samples are all from the same species, the output should have shown consistent and similar values across all samples with most sites categorized as nHapAlt (in our case of being haploid). The observed zero counts or inconsistencies for nRefHom and nNonRefHom (or in our case nHapRef and nHapAlt) across all samples, along with some missing data, suggest that there may be contamination or sequencing artifacts in the dataset. This could result from cross-sample contamination or technical issues during sequencing or data processing.
 
 ## Cleaned output
 After removing contaminating sequences, the cleaned BAM files were analyzed to compare the variant calls. The table below shows the per-sample counts (`PSC`) from the cleaned data.
@@ -135,4 +135,33 @@ The comparison of the cleaned data shows the following:
 This cleaned data output suggests that the removal of contaminants has led to a more consistent and reliable set of variant calls across the samples.
 
 
+## The filtered table
+
+The filtering has removed anything not probable enough. All number would be the same or lower:
+
+| PSC | [2]id | [3]sample | [4]nRefHom | [5]nNonRefHom | [6]nHets | [7]nTransitions | [8]nTransversions | [9]nIndels | [10]average depth | [11]nSingletons | [12]nHapRef | [13]nHapAlt | [14]nMissing |
+|-----|-------|-------------------------------------------------------------------|-----------|--------------|---------|----------------|------------------|----------|-----------------|---------------|-------------|-------------|-------------|
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/1.sorted.bam  | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 51          | 123         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/10.sorted.bam | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 68          | 106         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/11.sorted.bam | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 73          | 101         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/12.sorted.bam | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 70          | 104         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/13.sorted.bam | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 47          | 127         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/14.sorted.bam | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 63          | 111         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/15.sorted.bam | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 41          | 133         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/16.sorted.bam | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 68          | 102         | 4           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/2.sorted.bam  | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 57          | 117         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/3.sorted.bam  | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 29          | 145         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/4.sorted.bam  | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 44          | 130         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/5.sorted.bam  | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 65          | 109         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/6.sorted.bam  | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 42          | 132         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/7.sorted.bam  | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 55          | 119         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/8.sorted.bam  | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 72          | 102         | 0           |
+| PSC | 0     | /mnt/s-ws/everyone/SCIEM401/Module_6_Variants/clean_bams/9.sorted.bam  | 0         | 0            | 0       | 0              | 0                | 0        | 0.0             | 0             | 41          | 133         | 0           |
+
+
+**Comparison Between QC Filtered and Cleaned Output Table**
+1. **nHapRef and nHapAlt Counts**:
+   - **QC Filtered**: The `nHapRef` and `nHapAlt` values are generally lower than those in the cleaned dataset. After the data was filtered, the `nHapRef` and `nHapAlt` values are lower only showing variants that we can be mnore sure off (stringent QC filtering).
+2. **nMissing**:
+   - **QC Filtered**: The `nMissing` column remains at `0` or minimal across most samples, showing that stringent filtering helped reduce the missing data compared to cleaned data.
 

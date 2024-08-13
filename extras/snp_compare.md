@@ -1,4 +1,4 @@
-To compare the SNPs between the cleaned and filtered VCF files, you can follow these steps:
+## To compare the SNPs between the cleaned and filtered VCF files, you can follow these steps:
 
 ### **1. Extract SNP Data from Both VCF Files**
 
